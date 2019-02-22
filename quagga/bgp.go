@@ -179,6 +179,20 @@ func (b *BGP) Enable() error {
 	return err
 }
 
+// Command send config cmd to the BGP daemon
+func (b *BGP) Command(cmd string) (string, error) {
+	bgpConfigLock.Lock()
+	defer bgpConfigLock.Unlock()
+	return b.vty.Command(cmd)
+}
+
+// Commands send config cmds to the BGP daemon
+func (b *BGP) Commands(cmds []string) error {
+	bgpConfigLock.Lock()
+	defer bgpConfigLock.Unlock()
+	return b.vty.Commands(cmds)
+}
+
 // Configuration returns the current running configuration from the BGP daemon,
 // as a slice of strings.
 func (b *BGP) Configuration() ([]string, error) {
