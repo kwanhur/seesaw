@@ -179,6 +179,11 @@ func (b *BGP) Enable() error {
 	return err
 }
 
+// GetLocalAsn return local as number
+func (b *BGP) GetLocalAsn() uint32 {
+	return b.asn
+}
+
 // Command send config cmd to the BGP daemon
 func (b *BGP) Command(cmd string) (string, error) {
 	bgpConfigLock.Lock()
