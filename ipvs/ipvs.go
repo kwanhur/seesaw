@@ -373,6 +373,11 @@ func Version() IPVSVersion {
 	}
 }
 
+// ConnTableSize returns the connection table size for IPVS.
+func ConnTableSize() uint32 {
+	return info.ConnTableSize
+}
+
 // Flush flushes all services and destinations from the IPVS table.
 func Flush() error {
 	return netlink.SendMessage(C.IPVS_CMD_FLUSH, family, 0)
